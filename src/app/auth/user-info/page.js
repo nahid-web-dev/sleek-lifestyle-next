@@ -61,7 +61,7 @@ function UserInfoPage() {
     })
     const data = await response.json()
     if (data.success) {
-      toast.success('Information updated successfully')
+      alert('Information updated successfully')
       setAddress(address)
       router.back()
     }
@@ -70,7 +70,6 @@ function UserInfoPage() {
   if (status === 'authenticated') {
     return (
       <div className=' min-h-[60vh] flex flex-col gap-10 my-10'>
-        <ToastContainer />
         {
           session.user &&
           <div className=' flex flex-col justify-center items-center text-gray-500 gap-5'>
