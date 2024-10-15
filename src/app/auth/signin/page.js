@@ -10,7 +10,7 @@ export default function SignInPage() {
   const router = useRouter()
 
   if (status === 'authenticated') {
-    router.back()
+    router.push('/auth/user-info')
     return null
   } else if (status === 'loading') {
     return (
