@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import { useRef, useState, useEffect } from "react"
 import '@/app/auth/user-info/user-info.css'
 
-function page() {
+function UserInfoPage() {
 
   const { data: session, status } = useSession()
 
@@ -130,4 +130,4 @@ function page() {
 
 }
 
-export default page
+export default UserInfoPage

@@ -36,7 +36,6 @@ function UpadateProductPage() {
     })
     const data = await response.json()
     if (data.success) {
-      console.log('product received', data.product)
       setProduct(data.product)
       setSlImg(data?.product?.images[0])
       oldPrice.current.value = data.product.oldPrice
