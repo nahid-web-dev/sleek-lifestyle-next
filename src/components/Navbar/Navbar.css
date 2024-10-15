@@ -1,0 +1,17 @@
+@media (min-width:640px) {
+  .active {
+    color: lightcoral;
+    position: relative;
+    bottom: 8px;
+  }
+
+  .active::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: lightcoral;
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+  }
+}

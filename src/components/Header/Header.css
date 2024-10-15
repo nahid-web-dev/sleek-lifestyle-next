@@ -1,0 +1,27 @@
+@media (max-width: 639px) {
+  .active {
+    color: rgb(120, 113, 108);
+    position: static;
+  }
+
+  .active :nth-child(1) {
+    border: 2px solid lightcoral;
+    box-shadow: 0 0 5px 3px lightblue;
+  }
+
+  .active::after {
+    display: none;
+  }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}

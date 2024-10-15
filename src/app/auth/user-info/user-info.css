@@ -1,0 +1,15 @@
+.add-form div input {
+  @apply py-2 px-5 border border-green-300 placeholder:text-stone-500 text-stone-600 font-medium rounded-lg outline-2 outline-blue-300
+}
+
+.add-form div {
+  @apply flex flex-col-reverse
+}
+
+.add-form div label {
+  @apply pl-3 my-1 text-lg text-slate-700
+}
+
+.add-form button {
+  @apply w-full py-2 bg-blue-400 text-lg font-semibold text-white rounded-lg my-5
+}

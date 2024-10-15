@@ -1,0 +1,149 @@
+'use client'
+
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { FaPlus } from 'react-icons/fa6'
+import { TiMinus } from "react-icons/ti";
+
+function SingleProductBox({ product }) {
+
+
+  const [size, setSize] = useState()
+  const [slImg, setSlImg] = useState(product?.images[0])
+  const [quantity, setQuantity] = useState(1)
+
+  const { data: session, status } = useSession()
+
+  const router = useRouter()
+
+  const addToCart = async () => {
+    return
+  }
+
+  const orderNow = async () => {
+
+    try {
+      if (!session?.user?.email) {
+        return router.push('/auth/signin')
+      }
+
+      if (!size) {
+        return alert('Please select a size.')
+      }
+
+      const orderInfo = [
+        {
+          type: product.type,
+          productId: product._id,
+          price: product.currentPrice,
+          size: size,
+          quantity: quantity
+        }
+      ]
+
+      const response = await fetch('/api/order/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'Application/json'
+        },
+        body: JSON.stringify(orderInfo)
+      })
+      const status = response.status
+      if (status === 404) {
+        return router.push('/auth/user-info')
+      }
+      const data = await response.json()
+      alert(data.message)
+    } catch (error) {
+      alert(error?.message)
+    }
+
+  }
+
+  return (
+    <div>
+      {
+        product &&
+        <div className='flex flex-col md:flex-row md:justify-around gap-6 sm:gap-10 md:items-center sm:px-6 px-2'>
+
+          <div className='flex gap-6 flex-col items-center'>
+            <div className='relative h-[334px] w-full py-5'>
+              <Image
+                className='object-contain ' src={`${slImg}`}
+                alt="Product_image"
+                fill
+                sizes='100%'
+                priority
+              />
+            </div>
+            <div className=' flex flex-wrap h-28 justify-evenly md:justify-center md:h-36 w-full max-w-80 md:max-w-full md:border-none border border-blue-300 overflow-hidden gap-2 md:gap-4 md:bg-blue-200 p-2 md:p-3 rounded-lg'>
+              {
+                product.images && product.images.map((imgSrc, idx) => {
+                  return (
+                    <div key={idx} className={`${slImg === product.images[idx] && ' border-2 border-green-400 p-2'} relative md:w-28 md:max-w-28 rounded-lg transition-all w-[30%] max-w-20 `}>
+                      <div className=' relative h-full  md:w-full transition-all '>
+                        <Image
+                          src={imgSrc}
+                          onClick={() => setSlImg(product.images[idx])}
+                          className={` object-contain transition-all rounded-lg`}
+                          alt='image'
+                          fill
+                          priority
+                          sizes='100%'
+                        />
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          </div>
+
+
+          <div className='flex justify-center'>
+            <div className=' text-2xl flex flex-col gap-2'>
+              <pre>Type      : {product.type}</pre>
+              {product.discount > 0 && <pre className=' flex'>Old Price : <p>{product.oldPrice} tk</p></pre>}
+              <pre className=' flex '>Discount  : <p>{product.discount} %</p></pre>
+              <pre className=' flex '>Quantity  : <div className=' text-lg md:text-xl flex items-center border border-blue-400 rounded-md'>
+                <TiMinus className=' border-blue-400 w-10 h-7 cursor-pointer ' onClick={(e) => {
+                  e.stopPropagation()
+                  setQuantity((prevCount) => {
+                    if (prevCount > 1) {
+                      return prevCount - 1
+                    }
+                    return prevCount
+                  })
+                }} />
+                <h4 className=' text-center text-2xl border-x w-10 border-blue-400 cursor-default' >{quantity}</h4>
+                <FaPlus className=' border-blue-400 w-10 h-7 cursor-pointer ' onClick={(e) => {
+                  e.stopPropagation()
+                  setQuantity(quantity + 1)
+                }
+                } />
+              </div>
+              </pre>
+              <div className=' sm:text-xl font-medium flex justify-center gap-5 my-4 cursor-default'>
+                <h2 onClick={() => { setSize('M') }} className={`${size === 'M' && 'bg-blue-500 text-white border-none'} border-2 border-blue-300 rounded-md px-3 py-1 transition-all`}>M</h2>
+                <h2 onClick={() => { setSize('L') }} className={`${size === 'L' && 'bg-blue-500 text-white border-none'} border-2 border-blue-300 rounded-md px-4 py-1 transition-all`}>L</h2>
+                <h2 onClick={() => { setSize('XL') }} className={`${size === 'XL' && 'bg-blue-500 text-white border-none'} border-2 border-blue-300 rounded-md px-2 py-1 transition-all`}>XL</h2>
+              </div>
+              <pre className=' border-t-2 border-blue-300 flex '>Price     : <p>{product.currentPrice} tk</p></pre>
+              <div className='flex flex-col items-center gap-4 sm:gap-5 my-3 sm:my-6 text-center text-white'>
+                {/* <button className='w-[80%] bg-indigo-600 py-1 transition-all sm:hover:w-[90%] rounded-lg' onClick={addToCart}>Add to Cart</button> */}
+                <button className='w-[80%] bg-sky-500 py-1 transition-all sm:hover:w-[90%] rounded-lg' onClick={orderNow}>Order Now</button>
+                {/* <Link href='#' className='w-[80%] bg-sky-500 py-1 transition-all sm:hover:w-[90%] rounded-lg'>Order Now</Link> */}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      }
+    </div>
+  )
+}
+
+export default SingleProductBox
