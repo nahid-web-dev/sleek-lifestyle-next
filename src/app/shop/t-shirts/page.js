@@ -4,6 +4,7 @@ import Image from "next/image"
 import sleekBanner from '@/public/images/sleek_banner.png'
 import { FaArrowTrendDown } from "react-icons/fa6"
 
+export const dynamic = 'force-dynamic'
 
 async function TShirtsPage() {
   const allTShirts = await Product.find({ type: 't-shirt' }).lean()

@@ -8,35 +8,26 @@ import { FaArrowTrendDown } from 'react-icons/fa6'
 import HomePageProducts from '@/components/HomePageProducts/HomePageProducts'
 
 
-
+export const dynamic = 'force-dynamic'
 
 async function PagesContainer() {
 
-  async function receiveData() {
+  const allProducts = await Product.find({}).lean()
+  const serializedProducts = allProducts.map(product => ({
+    ...product,
+    _id: product._id.toString(), // Convert `_id` to a string
+    createdAt: product.createdAt.toISOString(), // Optional: Convert Date to ISO string if needed
+    updatedAt: product.updatedAt?.toISOString() // Handle other Date fields if they exist
+  }));
 
-    try {
-      const allProducts = await Product.find({}).lean()
-      const serializedProducts = allProducts.map(product => ({
-        ...product,
-        _id: product._id.toString(), // Convert `_id` to a string
-        createdAt: product.createdAt.toISOString(), // Optional: Convert Date to ISO string if needed
-        updatedAt: product.updatedAt?.toISOString() // Handle other Date fields if they exist
-      }));
+  // Filter products that should be shown on the home page and slide
+  const products = serializedProducts.filter((element) => {
+    return element.showHome && !element.hide
+  });
+  const slideProducts = serializedProducts.filter((element) => {
+    return element.showSlide && !element.hide
+  });
 
-      // Filter products that should be shown on the home page and slide
-      const products = serializedProducts.filter((element) => {
-        return element.showHome && !element.hide
-      });
-      const slideProducts = serializedProducts.filter((element) => {
-        return element.showSlide && !element.hide
-      });
-      return { products, slideProducts }
-    } catch (error) {
-      return { products: null, slideProducts: null }
-    }
-  }
-
-  const { products, slideProducts } = await receiveData()
   return (
 
     <div>
@@ -88,5 +79,6 @@ async function PagesContainer() {
     </div>
   )
 }
+
 
 export default PagesContainer

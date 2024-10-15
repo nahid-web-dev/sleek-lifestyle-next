@@ -5,9 +5,13 @@ import sleekBanner from '@/public/images/sleek_banner.png'
 import { FaArrowTrendDown } from "react-icons/fa6"
 
 
+export const dynamic = 'force-dynamic'
+
 async function CasualShirts() {
+
   const allCasuals = await Product.find({ type: 'casual' }).lean()
   const casuals = JSON.parse(JSON.stringify(allCasuals))
+
   return (
     <div>
       <div className='my-10'>
