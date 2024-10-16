@@ -63,7 +63,7 @@ export default function Home() {
               <div>
                 <h2 className="text-2xl font-semibold text-gray-800">Empowering Through Style</h2>
                 <p className="text-gray-600 mt-2">
-                  We believe that fashion is a form of self-expression. That’s why our designs empower men to express their unique personalities—whether it's a sharp casual shirt for a night out or a tailored piece for an important event.
+                  We believe that fashion is a form of self-expression. That's why our designs empower men to express their unique personalities—whether it's a sharp casual shirt for a night out or a tailored piece for an important event.
                 </p>
               </div>
             </div>
@@ -74,7 +74,7 @@ export default function Home() {
               <div>
                 <h2 className="text-2xl font-semibold text-gray-800">Driven by Excellence</h2>
                 <p className="text-gray-600 mt-2">
-                  Every detail of our clothing is carefully considered, from the precise stitching to the handpicked fabrics. Our commitment to excellence ensures that when you wear Sleek-Lifestyle, you're not just wearing clothes; you’re wearing the result of thoughtful craftsmanship and design.
+                  Every detail of our clothing is carefully considered, from the precise stitching to the handpicked fabrics. Our commitment to excellence ensures that when you wear Sleek-Lifestyle, you're not just wearing clothes; you're wearing the result of thoughtful craftsmanship and design.
                 </p>
               </div>
             </div>
@@ -85,7 +85,7 @@ export default function Home() {
               <div>
                 <h2 className="text-2xl font-semibold text-gray-800">Lifestyle-First Approach</h2>
                 <p className="text-gray-600 mt-2">
-                  Our collections are not just about looking good; they’re about feeling good. We understand the importance of comfort and function in men’s fashion. Our fabrics are chosen to withstand the demands of your busy life while providing the ease and confidence you need.
+                  Our collections are not just about looking good; they're about feeling good. We understand the importance of comfort and function in men's fashion. Our fabrics are chosen to withstand the demands of your busy life while providing the ease and confidence you need.
                 </p>
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function Home() {
               <div>
                 <h2 className="text-2xl font-semibold text-gray-800">Born in Bangladesh, Built for the World</h2>
                 <p className="text-gray-600 mt-2">
-                  As a brand rooted in Bangladesh, we are proud to celebrate our culture while maintaining a global perspective. Each collection is inspired by the energy of modern life, whether you’re navigating the streets of Dhaka or exploring cities abroad.
+                  As a brand rooted in Bangladesh, we are proud to celebrate our culture while maintaining a global perspective. Each collection is inspired by the energy of modern life, whether you're navigating the streets of Dhaka or exploring cities abroad.
                 </p>
               </div>
             </div>
@@ -107,7 +107,7 @@ export default function Home() {
               <div>
                 <h2 className="text-2xl font-semibold text-gray-800">Sustainability in Focus</h2>
                 <p className="text-gray-600 mt-2">
-                  We don’t just want you to look good; we want you to feel good about what you wear. That’s why we’re committed to sustainability, using eco-friendly materials and responsible production processes that respect the environment and the people involved in making our products.
+                  We don't just want you to look good; we want you to feel good about what you wear. That's why we're committed to sustainability, using eco-friendly materials and responsible production processes that respect the environment and the people involved in making our products.
                 </p>
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function Home() {
           {/* Call to Action Section */}
           <div className="text-center mt-12">
             <p className="text-lg font-semibold text-gray-700">
-              At Sleek-Lifestyle, we’re not just shaping men’s fashion; we’re creating a movement that reflects the bold, effortless confidence of today’s man.
+              At Sleek-Lifestyle, we're not just shaping men's fashion; we're creating a movement that reflects the bold, effortless confidence of today's man.
             </p>
             <Link href="/shop" className="inline-block mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-all">
               Join the Sleek Movement
