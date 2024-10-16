@@ -1,7 +1,7 @@
 import Card from "@/components/Card/Card"
 import Product from "@/models/Product.model"
 import Image from "next/image"
-import sleekBanner from '@/public/images/sleek_banner.png'
+import poloBanner from '@/public/images/polo_banner.jpg'
 import { FaArrowTrendDown } from "react-icons/fa6"
 
 export const dynamic = 'force-dynamic'
@@ -13,9 +13,9 @@ async function PoloShirts() {
     <div>
       <div className='my-10'>
         <Image
-          src={sleekBanner}
+          src={poloBanner}
           alt='Banner Image'
-          className=' w-[90%] sm:w-[60%] mx-auto rounded-xl'
+          className=' w-[90%] sm:w-[40%] mx-auto rounded-xl'
           priority
         />
       </div>

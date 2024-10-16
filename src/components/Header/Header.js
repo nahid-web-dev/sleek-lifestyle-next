@@ -27,7 +27,7 @@ const Header = () => {
       </li>
       <li>
         <Link href='/shop/casual' className={` ${pathname === '/shop/casual' ? 'active' : ''} flex flex-col items-center text-sm text-stone-500 `}>
-          <RiShirtFill className='border-2 border-indigo-200 rounded-full text-5xl text-stone-500 p-2' />Casual
+          <RiShirtFill className='border-2 border-indigo-200 rounded-full text-5xl text-stone-500 p-2' />Other
         </Link>
       </li>
       <li>
