@@ -19,14 +19,6 @@ async function PagesContainer() {
 
   const serializedProducts = JSON.parse(JSON.stringify(allProducts))
 
-  // const serializedProducts = allProducts.map(product => ({
-  //   ...product,
-  //   _id: product._id.toString(), // Convert `_id` to a string
-  //   createdAt: product.createdAt.toISOString(), // Optional: Convert Date to ISO string if needed
-  //   updatedAt: product.updatedAt?.toISOString() // Handle other Date fields if they exist
-  // }));
-
-  // Filter products that should be shown on the home page and slide
   const products = serializedProducts.filter((element) => {
     return element.showHome && !element.hide
   });
