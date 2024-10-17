@@ -2,11 +2,13 @@ import checkAdmin from '@/lib/checkAdmin';
 import Traffic from '@/models/Traffic.model';
 import { DateTime } from 'luxon';
 import { NextResponse } from 'next/server';
+import connectToDB from '@/lib/connectdb';
 
 export async function GET(req) {
 
   try {
 
+    await connectToDB()
     const nowInDhaka = DateTime.now().setZone('Asia/Dhaka');
     const dhakaDate = nowInDhaka.toFormat('dd-MM-yyyy HH:mm:ss');
 
@@ -36,7 +38,8 @@ export async function GET(req) {
     });
   } catch (error) {
     return NextResponse.json({
-
+      success: false,
+      message: 'Unknown error'
     })
   }
 }

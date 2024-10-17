@@ -3,10 +3,12 @@ import Product from "@/models/Product.model"
 import Image from "next/image"
 import tShirtBg from '@/public/images/tshirt_banner.jpg'
 import { FaArrowTrendDown } from "react-icons/fa6"
+import connectToDB from '@/lib/connectdb';
 
 export const dynamic = 'force-dynamic'
 
 async function TShirtsPage() {
+  await connectToDB()
   const allTShirts = await Product.find({ type: 't-shirt' }).lean()
   const tShirts = JSON.parse(JSON.stringify(allTShirts))
   return (

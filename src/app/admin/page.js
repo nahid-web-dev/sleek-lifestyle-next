@@ -1,10 +1,12 @@
 import AdminDashboard from "@/components/AdminDashboard/AdminDashboard"
+import connectToDB from "@/lib/connectdb"
 import Order from "@/models/Order.model"
 import Product from "@/models/Product.model"
 import Traffic from "@/models/Traffic.model"
 import User from "@/models/User.model"
 
 async function AdminPage() {
+  await connectToDB()
   const allProducts = await Product.find({}).lean()
   const allOrders = await Order.find({}).lean()
   const allUsers = await User.find({ role: 'user' }).lean()

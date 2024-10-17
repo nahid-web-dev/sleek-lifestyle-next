@@ -1,9 +1,11 @@
 import AdminProducts from "@/components/AdminProducts/AdminProducts";
+import connectToDB from "@/lib/connectdb";
 import Product from "@/models/Product.model";
 
 
 async function ProductsPage() {
 
+  await connectToDB()
   const allProducts = await Product.find({}).lean()
   const products = JSON.parse(JSON.stringify(allProducts))
 

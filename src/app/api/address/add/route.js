@@ -1,10 +1,12 @@
 import Address from "@/models/Address.model";
 import { DateTime } from "luxon";
 import { NextResponse } from "next/server";
+import connectToDB from '@/lib/connectdb';
 
 
 export async function POST(request) {
   try {
+    await connectToDB()
     // Get the current date/time in a specific timezone
     const nowInDhaka = DateTime.now().setZone('Asia/Dhaka');
     const dhakaDate = nowInDhaka.toFormat('dd-MM-yyyy HH:mm:ss');

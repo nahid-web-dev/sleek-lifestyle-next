@@ -1,9 +1,11 @@
 import AdminOrder from "@/components/AdminOrder/AdminOrder"
+import connectToDB from "@/lib/connectdb"
 import Order from "@/models/Order.model"
 
 
 async function OrdersPage() {
 
+  await connectToDB()
   const allOrders = await Order.find({}).lean()
   const orders = JSON.parse(JSON.stringify(allOrders))
 

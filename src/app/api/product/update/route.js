@@ -1,11 +1,13 @@
 import Product from "@/models/Product.model";
 import { NextResponse } from "next/server";
 import checkAdmin from "../../../../lib/checkAdmin";
+import connectToDB from '@/lib/connectdb';
 
 
 export async function POST(req) {
   try {
 
+    await connectToDB()
     const isAdmin = await checkAdmin()
 
 

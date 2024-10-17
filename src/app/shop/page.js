@@ -6,19 +6,25 @@ import SlideProducts from '@/components/SlideProducts/SlideProducts'
 import Product from '@/models/Product.model'
 import { FaArrowTrendDown } from 'react-icons/fa6'
 import HomePageProducts from '@/components/HomePageProducts/HomePageProducts'
+import connectToDB from '@/lib/connectdb'
 
 
 export const dynamic = 'force-dynamic'
 
 async function PagesContainer() {
 
+  await connectToDB()
+
   const allProducts = await Product.find({}).lean()
-  const serializedProducts = allProducts.map(product => ({
-    ...product,
-    _id: product._id.toString(), // Convert `_id` to a string
-    createdAt: product.createdAt.toISOString(), // Optional: Convert Date to ISO string if needed
-    updatedAt: product.updatedAt?.toISOString() // Handle other Date fields if they exist
-  }));
+
+  const serializedProducts = JSON.parse(JSON.stringify(allProducts))
+
+  // const serializedProducts = allProducts.map(product => ({
+  //   ...product,
+  //   _id: product._id.toString(), // Convert `_id` to a string
+  //   createdAt: product.createdAt.toISOString(), // Optional: Convert Date to ISO string if needed
+  //   updatedAt: product.updatedAt?.toISOString() // Handle other Date fields if they exist
+  // }));
 
   // Filter products that should be shown on the home page and slide
   const products = serializedProducts.filter((element) => {

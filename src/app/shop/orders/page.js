@@ -3,8 +3,11 @@ import ClientOrders from "@/components/ClientOrders/ClientOrders";
 import Order from "@/models/Order.model"
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import connectToDB from '@/lib/connectdb';
 
 async function ClientOrdersPage() {
+
+  await connectToDB()
 
   const session = await getServerSession(authOptions);
 

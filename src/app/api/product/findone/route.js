@@ -1,9 +1,11 @@
 import Product from "@/models/Product.model";
 import { NextResponse } from "next/server";
+import connectToDB from '@/lib/connectdb';
 
 export async function POST(request) {
   try {
 
+    await connectToDB()
     const id = await request.json()
 
     const product = await Product.findById(id)

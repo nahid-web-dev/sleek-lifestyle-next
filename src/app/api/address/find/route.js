@@ -1,9 +1,11 @@
 import Address from "@/models/Address.model";
 import { NextResponse } from "next/server";
+import connectToDB from '@/lib/connectdb';
 
 
 export async function POST(request) {
   try {
+    await connectToDB()
     const email = await request.json()
     const address = await Address.findOne({ email: email }).lean()
     if (!address) {

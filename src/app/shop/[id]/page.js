@@ -1,8 +1,10 @@
 import SingleProductBox from '@/components/SingleProductBox/SingleProductBox'
+import connectToDB from '@/lib/connectdb';
 import Product from '@/models/Product.model'
 import mongoose from 'mongoose';
 
 const SingleProduct = async ({ params }) => {
+  await connectToDB()
 
   const { id } = params
 

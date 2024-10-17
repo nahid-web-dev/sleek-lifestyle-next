@@ -3,10 +3,12 @@ import Product from "@/models/Product.model"
 import Image from "next/image"
 import poloBanner from '@/public/images/polo_banner.jpg'
 import { FaArrowTrendDown } from "react-icons/fa6"
+import connectToDB from '@/lib/connectdb';
 
 export const dynamic = 'force-dynamic'
 
 async function PoloShirts() {
+  await connectToDB()
   const allPoloShirts = await Product.find({ type: 'polo-shirt' }).lean()
   const poloShirts = JSON.parse(JSON.stringify(allPoloShirts))
   return (
