@@ -26,6 +26,10 @@ async function PagesContainer() {
     return element.showSlide && !element.hide
   });
 
+  if (!products || products.length === 0) {
+    return <div>No products available. Please check back later!</div>;
+  }
+
   return (
 
     <div>

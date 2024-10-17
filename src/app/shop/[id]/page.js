@@ -20,6 +20,10 @@ const SingleProduct = async ({ params }) => {
 
   const product = JSON.parse(JSON.stringify(receivedProduct))
 
+  if (!product) {
+    return <div>No products available. Please check back later!</div>;
+  }
+
 
   return (
     <div className='min-h-screen my-10 '>

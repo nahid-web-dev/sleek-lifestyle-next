@@ -11,6 +11,9 @@ async function TShirtsPage() {
   await connectToDB()
   const allTShirts = await Product.find({ type: 't-shirt' }).lean()
   const tShirts = JSON.parse(JSON.stringify(allTShirts))
+  if (!tShirts || tShirts.length === 0) {
+    return <div>No products available. Please check back later!</div>;
+  }
   return (
     <div>
       <div className='my-10'>

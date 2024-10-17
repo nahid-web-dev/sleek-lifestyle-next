@@ -13,6 +13,9 @@ async function CasualShirts() {
   const allCasuals = await Product.find({ type: 'casual' }).lean()
   const casuals = JSON.parse(JSON.stringify(allCasuals))
 
+  if (!casuals || casuals.length === 0) {
+    return <div>No products available. Please check back later!</div>;
+  }
   return (
     <div>
       <div className='my-10'>

@@ -16,6 +16,7 @@ async function AdminPage() {
   const orders = JSON.parse(JSON.stringify(allOrders))
   const users = JSON.parse(JSON.stringify(allUsers))
   const traffics = JSON.parse(JSON.stringify(allTraffics))
+
   return (
     <main>
       <AdminDashboard products={products} orders={orders} users={users} traffics={traffics} />
