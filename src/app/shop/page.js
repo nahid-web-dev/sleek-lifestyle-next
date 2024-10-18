@@ -20,7 +20,7 @@ async function PagesContainer() {
   const serializedProducts = JSON.parse(JSON.stringify(allProducts))
 
   const products = serializedProducts.filter((element) => {
-    return element.showHome && !element.hide
+    return element.showHome && !element.hide && !element.showSlide
   });
   const slideProducts = serializedProducts.filter((element) => {
     return element.showSlide && !element.hide
@@ -71,11 +71,11 @@ async function PagesContainer() {
 
       <div className='flex flex-col'>
         <div className=' text-2xl font-semibold text-stone-600 text-center my-4 sm:my-10'>
-          <span className=' italic font-serif text-3xl ' >Trend</span>
-          <span className=' italic font-serif text-3xl text-green-500' >ing </span>
+          <span className=' italic font-serif text-3xl ' >Differ</span>
+          <span className=' italic font-serif text-3xl text-green-500' >ent </span>
           <span className=' text-4xl font-sans text-blue-400 ml-2'> C</span>
-          <span className='italic font-sans'>ollec</span>
-          <span className='text-blue-400'>tions</span>
+          <span className='italic font-sans'>atego</span>
+          <span className='text-blue-400'>ries</span>
           <FaArrowTrendDown className='inline-block mx-2 text-blue-400' />
         </div>
 

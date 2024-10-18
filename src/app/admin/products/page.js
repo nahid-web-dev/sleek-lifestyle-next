@@ -2,6 +2,7 @@ import AdminProducts from "@/components/AdminProducts/AdminProducts";
 import connectToDB from "@/lib/connectdb";
 import Product from "@/models/Product.model";
 
+export const dynamic = 'force-dynamic'
 
 async function ProductsPage() {
 

@@ -1,26 +1,12 @@
-'use client'
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { IoStarSharp } from "react-icons/io5";
 import { TbCurrencyTaka } from "react-icons/tb";
+import BuyNowButton from '../BuyNowButton/BuyNowButton';
 
 
-export default function Card({ product }) {
+export default function Card({ product, slideImage = false, }) {
 
-  const router = useRouter()
-
-  const handleBuy = async (e) => {
-    e.stopPropagation()
-    fetch('/api/product/increase-click', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'Application/json'
-      },
-      body: JSON.stringify(product._id)
-    })
-    router.push(`/shop/${product._id}`)
-  }
 
   const name = product?.name
 
@@ -28,12 +14,11 @@ export default function Card({ product }) {
 
   return (
 
-    <div className='rounded-lg overflow-hidden w-[150px] sm:w-[240px] mx-auto bg-white flex flex-col gap-2 '>
+    <div className={`rounded-lg overflow-hidden w-[150px] sm:w-[240px] bg-white flex flex-col gap-2 ${slideImage && 'mx-auto'} `}>
 
       <div className='relative p-4  w-full h-[180px] sm:h-[300px] '>
         <Image
-          onClick={handleBuy}
-          className='object-center object-cover rounded-lg sm:hover:scale-125 cursor-pointer transition-all'
+          className='object-center object-cover rounded-lg sm:hover:scale-125 transition-all'
           src={product?.images[0]}
           alt="img"
           priority
@@ -70,7 +55,7 @@ export default function Card({ product }) {
             <p className=' sm:w-7 w-5 h-5 border sm:h-7 flex justify-center items-center border-blue-400 rounded-sm sm:rounded-md'>L</p>
             <p className=' sm:w-7 w-5 px-2 h-5 border sm:h-7 flex justify-center items-center border-blue-400 rounded-sm sm:rounded-md'>XL</p>
           </div>
-          <button onClick={handleBuy} className=' sm:px-2 px-1 py-1 sm:hover:px-3 transition-all sm:py-1 text-xs sm:text-base font-medium text-white rounded-lg border border-stone-400 bg-black'>buy now</button>
+          <BuyNowButton productId={product._id} />
         </div>
       </div>
     </div>

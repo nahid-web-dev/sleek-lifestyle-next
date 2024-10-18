@@ -13,11 +13,14 @@ async function CasualShirts() {
   const allCasuals = await Product.find({ type: 'casual' }).lean()
   const casuals = JSON.parse(JSON.stringify(allCasuals))
 
-  return (
-    <div className=" my-20 text-xl text-rose-600 text-center">
-      <h2>No Product Here!</h2>
-    </div>
-  )
+  if (!casuals || casuals.length == 0) {
+    return (
+      <div className=" my-20 text-xl text-rose-600 text-center">
+        <h2>No Product Here!</h2>
+      </div>
+    )
+  }
+
   return (
     <div>
       <div className='my-10'>
@@ -35,7 +38,7 @@ async function CasualShirts() {
         <span className='text-blue-400'>rs</span>
         <FaArrowTrendDown className='inline-block mx-2 text-rose-600' />
       </div>
-      <div className=' grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 lg:mx-6'>
+      <div className=' flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 xl:gap-x-5 2xl:gap-x-8 gap-y-5 md:gap-y-10 lg:mx-6'>
         {
           casuals.slice().reverse().map((product) => {
             return <Card key={product._id} product={product} />

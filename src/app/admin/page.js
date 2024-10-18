@@ -5,6 +5,8 @@ import Product from "@/models/Product.model"
 import Traffic from "@/models/Traffic.model"
 import User from "@/models/User.model"
 
+export const dynamic = 'force-dynamic'
+
 async function AdminPage() {
   await connectToDB()
   const allProducts = await Product.find({}).lean()

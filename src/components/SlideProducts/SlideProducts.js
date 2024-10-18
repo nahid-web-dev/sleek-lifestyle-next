@@ -28,7 +28,7 @@ function SlideProducts({ slideProducts }) {
           slideProducts && slideProducts.map((product, idx) => {
             return (
               <CarouselItem className="sm:basis-1/2 lg:basis-1/3 xl:basis-1/4" key={idx}>
-                <Card product={product} />
+                <Card product={product} slideImage={true} />
               </CarouselItem>
             )
           })

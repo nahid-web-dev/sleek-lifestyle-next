@@ -40,7 +40,7 @@ function UserInfoPage() {
   useEffect(
     () => {
       receiveData()
-    }, [status]
+    }, [status, receiveData]
   )
 
   const addInfo = async (e) => {

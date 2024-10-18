@@ -2,6 +2,7 @@ import AdminOrder from "@/components/AdminOrder/AdminOrder"
 import connectToDB from "@/lib/connectdb"
 import Order from "@/models/Order.model"
 
+export const dynamic = 'force-dynamic'
 
 async function OrdersPage() {
 

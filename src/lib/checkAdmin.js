@@ -3,6 +3,8 @@ import { authOptions } from "../app/api/auth/[...nextauth]/route"
 
 export default async function checkAdmin() {
 
+  // return true
+
   try {
     const session = await getServerSession(authOptions);
 

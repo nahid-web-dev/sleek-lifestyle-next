@@ -35,7 +35,7 @@ async function PoloShirts() {
         <span className='text-blue-400'>rts</span>
         <FaArrowTrendDown className='inline-block mx-2 text-rose-600' />
       </div>
-      <div className=' grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-y-10 lg:mx-6'>
+      <div className=' flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 xl:gap-x-5 2xl:gap-x-8 gap-y-5 md:gap-y-10 lg:mx-6'>
         {
           poloShirts.slice().reverse().map((product) => {
             return <Card key={product._id} product={product} />
