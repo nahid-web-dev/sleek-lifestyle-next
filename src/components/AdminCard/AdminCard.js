@@ -101,7 +101,7 @@ function AdminCard({ singleProduct, setShowProducts }) {
           className='h-[187px] lg:h-[334px] w-full object-center object-cover rounded-lg sm:hover:scale-125 transition-all'
           src={product.images[0]}
           alt="image"
-          priority
+          priority={false}
           fill
           sizes='100%'
         />

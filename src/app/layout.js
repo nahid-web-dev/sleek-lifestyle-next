@@ -21,7 +21,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  await connectToDB()
   return (
     <html lang="en">
       <body

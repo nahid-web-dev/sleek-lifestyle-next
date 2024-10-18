@@ -4,7 +4,6 @@
 import Image from 'next/image';
 import { IoStarSharp } from "react-icons/io5";
 import { TbCurrencyTaka } from "react-icons/tb";
-import BuyNowButton from '../BuyNowButton/BuyNowButton';
 import { useRouter } from "next/navigation"
 
 
@@ -39,9 +38,9 @@ export default function Card({ product, slideImage = false, }) {
           className='object-center object-cover rounded-lg sm:hover:scale-125 transition-all'
           src={product?.images[0]}
           alt="img"
-          priority
           sizes='100%'
           fill
+          priority={false}
         />
       </div>
 
