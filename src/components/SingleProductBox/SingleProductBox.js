@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
+import { MdCheck } from 'react-icons/md'
 import { TiMinus } from "react-icons/ti";
 
 function SingleProductBox({ product }) {
@@ -14,6 +15,7 @@ function SingleProductBox({ product }) {
   const [size, setSize] = useState()
   const [slImg, setSlImg] = useState(product?.images[0])
   const [quantity, setQuantity] = useState(1)
+  const [copied, setCopied] = useState(false)
 
   const { data: session, status } = useSession()
 
@@ -27,7 +29,8 @@ function SingleProductBox({ product }) {
 
     try {
       if (!session?.user?.email) {
-        return router.push('/auth/signin')
+        window.open(`https://m.me/sleeklifestylebrand`, "_blank");
+        return
       }
 
       if (!size) {
@@ -61,6 +64,17 @@ function SingleProductBox({ product }) {
       alert(error?.message)
     }
 
+  }
+
+  const copyProductLink = async () => {
+    const productLink = `https://sleek-lifestyle.com/shop/${product._id}`
+    try {
+      await navigator.clipboard.writeText(productLink); // Copy the product link to the clipboard
+      setCopied(true); // Set copied state to true
+      setTimeout(() => setCopied(false), 3000); // Reset copied state after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy text: ', err); // Log any errors that occur
+    }
   }
 
   return (
@@ -134,6 +148,7 @@ function SingleProductBox({ product }) {
               <pre className=' border-t-2 border-blue-300 flex '>Price     : <p>{product.currentPrice} tk</p></pre>
               <div className='flex flex-col items-center gap-4 sm:gap-5 my-3 sm:my-6 text-center text-white'>
                 {/* <button className='w-[80%] bg-indigo-600 py-1 transition-all sm:hover:w-[90%] rounded-lg' onClick={addToCart}>Add to Cart</button> */}
+                <button className={` text-stone-700 text-lg border-2 border-stone-400 py-1 transition-all sm:hover:w-[80%] rounded-lg  ${copied ? 'w-[50%] !text-green-700 !border-green-500 flex justify-center items-center' : 'w-[65%]'}`} onClick={copyProductLink}> {copied ? 'Copied' : 'Copy Product Link'} {copied && <MdCheck />} </button>
                 <button className='w-[80%] bg-sky-500 py-1 transition-all sm:hover:w-[90%] rounded-lg' onClick={orderNow}>Order Now</button>
                 {/* <Link href='#' className='w-[80%] bg-sky-500 py-1 transition-all sm:hover:w-[90%] rounded-lg'>Order Now</Link> */}
               </div>

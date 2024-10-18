@@ -1,9 +1,11 @@
 import Card from "@/components/Card/Card"
 import Product from "@/models/Product.model"
 import Image from "next/image"
-import tShirtBg from '@/public/images/tshirt_banner.jpg'
 import { FaArrowTrendDown } from "react-icons/fa6"
 import connectToDB from '@/lib/connectdb';
+
+// import tShirtBg from '@/public/images/tshirt_banner.jpg'
+
 
 export const dynamic = 'force-dynamic'
 
@@ -20,14 +22,14 @@ async function TShirtsPage() {
   }
   return (
     <div>
-      <div className='my-10'>
+      {/* <div className='my-10'>
         <Image
           src={tShirtBg}
           alt='Banner Image'
           className=' w-[90%] sm:w-[60%] mx-auto rounded-xl'
           priority
         />
-      </div>
+      </div> */}
       <div className=' text-2xl font-semibold text-stone-600 text-center my-4 sm:my-6'>
         <span className=' italic font-sans' >Latest </span>
         <span className=' text-4xl font-serif text-rose-600 ml-2'> T-</span>

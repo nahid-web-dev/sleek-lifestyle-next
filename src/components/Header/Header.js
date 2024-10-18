@@ -6,6 +6,8 @@ import './Header.css'
 import { FaHome } from 'react-icons/fa'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { PiPantsFill } from "react-icons/pi";
+
 
 const Header = () => {
 
@@ -26,13 +28,13 @@ const Header = () => {
         </Link>
       </li>
       <li>
-        <Link href='/shop/casual' className={` ${pathname === '/shop/casual' ? 'active' : ''} flex flex-col items-center text-sm text-stone-500 `}>
-          <RiShirtFill className='border-2 border-indigo-200 rounded-full text-5xl text-stone-500 p-2' />Other
+        <Link href='/shop/polo-shirts' className={` ${pathname === '/shop/polo-shirts' ? 'active' : ''} flex flex-col items-center text-sm text-stone-500 `}>
+          <PiPantsFill className='border-2 border-indigo-200 rounded-full text-5xl text-slate-700 p-2' />Trousers
         </Link>
       </li>
       <li>
-        <Link href='/shop/polo-shirts' className={` ${pathname === '/shop/polo-shirts' ? 'active' : ''} flex flex-col items-center text-sm text-stone-500 `}>
-          <GiPoloShirt className='border-2 border-indigo-200 rounded-full text-5xl text-slate-700 p-2' />Polo
+        <Link href='/shop/casual' className={` ${pathname === '/shop/casual' ? 'active' : ''} flex flex-col items-center text-sm text-stone-500 `}>
+          <RiShirtFill className='border-2 border-indigo-200 rounded-full text-5xl text-stone-500 p-2' />Others
         </Link>
       </li>
 

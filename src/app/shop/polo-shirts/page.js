@@ -20,21 +20,22 @@ async function PoloShirts() {
   }
   return (
     <div>
-      <div className='my-10'>
+      {/* <div className='my-10'>
         <Image
           src={poloBanner}
           alt='Banner Image'
           className=' w-[90%] sm:w-[40%] mx-auto rounded-xl'
           priority
         />
-      </div>
-      <div className=' text-2xl font-semibold text-stone-600 text-center my-4 sm:my-6'>
+      </div> */}
+      {/* <div className=' text-2xl font-semibold text-stone-600 text-center my-4 sm:my-6'>
         <span className=' italic font-sans' >Latest </span>
         <span className=' text-4xl font-serif text-rose-600 ml-2'> Polo </span>
         <span className='italic font-sans'>shi</span>
         <span className='text-blue-400'>rts</span>
         <FaArrowTrendDown className='inline-block mx-2 text-rose-600' />
-      </div>
+      </div> */}
+      <div className="my-10"></div>
       <div className=' flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 xl:gap-x-5 2xl:gap-x-8 gap-y-5 md:gap-y-10 lg:mx-6'>
         {
           poloShirts.slice().reverse().map((product) => {

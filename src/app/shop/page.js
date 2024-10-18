@@ -1,13 +1,13 @@
 import Image from 'next/image'
 
-import sleekBanner from '@/public/images/sleek_banner.png'
-import sleekSideBanner from '@/public/images/sleek_side_banner.png'
 import SlideProducts from '@/components/SlideProducts/SlideProducts'
 import Product from '@/models/Product.model'
 import { FaArrowTrendDown } from 'react-icons/fa6'
 import HomePageProducts from '@/components/HomePageProducts/HomePageProducts'
 import connectToDB from '@/lib/connectdb'
 
+// import sleekBanner from '@/public/images/sleek_banner.png'
+// import sleekSideBanner from '@/public/images/sleek_side_banner.png'
 
 export const dynamic = 'force-dynamic'
 
@@ -38,7 +38,7 @@ async function PagesContainer() {
 
     <div>
 
-      <div className=' flex gap-5 justify-center sm:gap-16 items-center my-10 sm:my-12'>
+      {/* <div className=' flex gap-5 justify-center sm:gap-16 items-center my-10 sm:my-12'>
         <div className=' w-[60%] sm:w-[52%] overflow-hidden'>
           <Image
             src={sleekBanner}
@@ -56,6 +56,19 @@ async function PagesContainer() {
           />
         </div>
 
+      </div> */}
+
+      <div className='flex flex-col'>
+        {/* <div className=' text-2xl font-semibold text-stone-600 text-center my-4 sm:my-10'>
+          <span className=' italic font-serif text-3xl ' >Differ</span>
+          <span className=' italic font-serif text-3xl text-green-500' >ent </span>
+          <span className=' text-4xl font-sans text-blue-400 ml-2'> C</span>
+          <span className='italic font-sans'>atego</span>
+          <span className='text-blue-400'>ries</span>
+          <FaArrowTrendDown className='inline-block mx-2 text-blue-400' />
+        </div> */}
+
+        <HomePageProducts products={products} />
       </div>
 
       <div className='flex flex-col'>
@@ -67,19 +80,6 @@ async function PagesContainer() {
           <FaArrowTrendDown className='inline-block mx-2 text-rose-600' />
         </div>
         <SlideProducts slideProducts={slideProducts} />
-      </div>
-
-      <div className='flex flex-col'>
-        <div className=' text-2xl font-semibold text-stone-600 text-center my-4 sm:my-10'>
-          <span className=' italic font-serif text-3xl ' >Differ</span>
-          <span className=' italic font-serif text-3xl text-green-500' >ent </span>
-          <span className=' text-4xl font-sans text-blue-400 ml-2'> C</span>
-          <span className='italic font-sans'>atego</span>
-          <span className='text-blue-400'>ries</span>
-          <FaArrowTrendDown className='inline-block mx-2 text-blue-400' />
-        </div>
-
-        <HomePageProducts products={products} />
       </div>
 
     </div>

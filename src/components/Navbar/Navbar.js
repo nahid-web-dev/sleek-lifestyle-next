@@ -35,7 +35,7 @@ function Navbar() {
             <Link href="/shop/t-shirts" className={pathname === '/shop/t-shirts' ? 'active' : ' '}>T-Shirts</Link>
           </li>
           <li>
-            <Link href="/shop/polo-shirts" className={pathname === '/shop/polo-shirts' ? 'active' : ''}>Polo-Shirts</Link>
+            <Link href="/shop/polo-shirts" className={pathname === '/shop/polo-shirts' ? 'active' : ''}>Trousers</Link>
           </li>
           <li>
             <Link href="/shop/casual" className={pathname === '/shop/casual' ? 'active' : ''}>Others</Link>

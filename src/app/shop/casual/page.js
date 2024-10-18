@@ -1,9 +1,10 @@
 import Card from "@/components/Card/Card"
 import Product from "@/models/Product.model"
 import Image from "next/image"
-import casualBanner from '@/public/images/casual_banner.jpg'
 import { FaArrowTrendDown } from "react-icons/fa6"
 import connectToDB from '@/lib/connectdb';
+
+// import casualBanner from '@/public/images/casual_banner.jpg'
 
 export const dynamic = 'force-dynamic'
 
@@ -23,7 +24,7 @@ async function CasualShirts() {
 
   return (
     <div>
-      <div className='my-10'>
+      {/* <div className='my-10'>
         <Image
           src={casualBanner}
           alt='Banner Image'
@@ -37,7 +38,9 @@ async function CasualShirts() {
         <span className='italic font-sans'>othe</span>
         <span className='text-blue-400'>rs</span>
         <FaArrowTrendDown className='inline-block mx-2 text-rose-600' />
-      </div>
+      </div> */}
+
+      <div className="my-10"></div>
       <div className=' flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 xl:gap-x-5 2xl:gap-x-8 gap-y-5 md:gap-y-10 lg:mx-6'>
         {
           casuals.slice().reverse().map((product) => {

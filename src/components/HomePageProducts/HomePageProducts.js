@@ -28,7 +28,7 @@ function HomePageProducts({ products }) {
       </div>
 
       <div>
-        <h2 className=" text-2xl my-3 sm:my-4 md:my-6 lg:my-7 text-center text-blue-600 underline ">Polo-Shirts</h2>
+        <h2 className=" text-2xl my-3 sm:my-4 md:my-6 lg:my-7 text-center text-blue-600 underline ">Trousers</h2>
         <div className=' flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 xl:gap-x-5 2xl:gap-x-8 gap-y-5 md:gap-y-10 lg:mx-6'>
           {
             poloShirts && poloShirts.slice().reverse().map((product) => {
@@ -39,7 +39,7 @@ function HomePageProducts({ products }) {
       </div>
 
       <div>
-        <h2 className=" text-2xl my-3 sm:my-4 md:my-6 lg:my-7 text-center text-blue-600 underline ">Other Categories </h2>
+        <h2 className=" text-2xl my-3 sm:my-4 md:my-6 lg:my-7 text-center text-blue-600 underline ">Others </h2>
         <div className=' flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 xl:gap-x-5 2xl:gap-x-8 gap-y-5 md:gap-y-10 lg:mx-6'>
           {
             casuals && casuals.slice().reverse().map((product) => {

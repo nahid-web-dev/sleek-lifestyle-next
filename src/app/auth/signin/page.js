@@ -30,13 +30,13 @@ export default function SignInPage() {
             priority
           />
         </div>
-        <button
+        {/* <button
           className=" w-full bg-blue-500 hover:bg-blue-700 text-white font-bold p-4 rounded-lg flex justify-center items-center gap-2"
           onClick={() => signIn('facebook', { scope: 'email' })}
         >
           <FaFacebook className=' text-3xl ' />
           Sign in with Facebook
-        </button>
+        </button> */}
         <button
           className=" w-full border-2 rounded-lg  font-bold p-4 text-slate-700 flex items-center justify-center gap-2 hover:bg-stone-200"
           onClick={() => signIn('google')}
