@@ -89,6 +89,9 @@ function AdminCard({ singleProduct, setShowProducts }) {
     }
   }
 
+
+  const cloudinaryURL = `${product?.images[0]}?f_auto,q_auto,w_auto`;
+
   const updateProduct = async () => {
     return router.push(`/admin/products/${product._id}`)
   }
@@ -99,11 +102,11 @@ function AdminCard({ singleProduct, setShowProducts }) {
       <div className='relative h-[180px] lg:h-[300px] '>
         <Image
           className='h-[187px] lg:h-[334px] w-full object-center object-cover rounded-lg sm:hover:scale-125 transition-all'
-          src={product.images[0]}
+          src={cloudinaryURL}
           alt="image"
           priority={false}
           fill
-          sizes='100%'
+          sizes='(max-width: 640px) 100vw, 240px'
         />
       </div>
       <div className='py-2 bg-stone-100 transition-all flex justify-evenly flex-col w-full border border-green-500 rounded-lg z-10 overflow-hidden'>

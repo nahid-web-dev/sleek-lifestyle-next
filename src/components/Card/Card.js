@@ -11,8 +11,8 @@ export default function Card({ product, slideImage = false, }) {
 
 
   const name = product?.name
-
   const productName = name && name.split('').slice(0, 20)
+  const cloudinaryURL = `${product?.images[0]}?f_auto,q_auto,w_auto`;
 
   const router = useRouter()
   const handleBuy = (e) => {
@@ -36,9 +36,9 @@ export default function Card({ product, slideImage = false, }) {
       <div className='relative p-4  w-full h-[180px] sm:h-[300px] '>
         <Image
           className='object-center object-cover rounded-lg sm:hover:scale-125 transition-all'
-          src={product?.images[0]}
+          src={cloudinaryURL}
           alt="img"
-          sizes='100%'
+          sizes='(max-width: 640px) 100vw, 240px'
           fill
           priority={false}
         />
