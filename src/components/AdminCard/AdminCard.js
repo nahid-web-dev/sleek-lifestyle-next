@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 import { BiHide, BiSolidHide } from "react-icons/bi";
 import { useState } from "react";
 import { IoMdEye } from "react-icons/io";
+import { FaTrash } from "react-icons/fa";
 
 
-function AdminCard({ singleProduct }) {
+function AdminCard({ singleProduct, setShowProducts }) {
 
   const router = useRouter()
 
@@ -28,9 +29,7 @@ function AdminCard({ singleProduct }) {
         })
       })
       const data = await response.json()
-      if (data.success) {
-        setProduct(data.product)
-      }
+
     } catch (error) {
 
     }
@@ -57,6 +56,37 @@ function AdminCard({ singleProduct }) {
 
     }
 
+  }
+
+  const removeProduct = async () => {
+    const checkConfirm = confirm('Are you sure removing the product?')
+    if (!checkConfirm) {
+      return
+    }
+    try {
+      const response = await fetch('/api/product/remove', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "Application/json"
+        },
+        body: JSON.stringify(product._id)
+      })
+      const data = await response.json()
+      console.log('response received')
+      if (data.success) {
+        alert(data.message)
+        if (data.success) {
+          setShowProducts((prevProducts) => {
+            const newProducts = prevProducts.filter((item) => {
+              return item._id !== product._id
+            })
+            return [...newProducts]
+          })
+        }
+      }
+    } catch (error) {
+
+    }
   }
 
   const updateProduct = async () => {
@@ -93,6 +123,7 @@ function AdminCard({ singleProduct }) {
           {
             product.hide ? <BiSolidHide onClick={unHideProduct} className='p-0.5 ring-1 ring-red-700 text-rose-600 rounded-full cursor-pointer' /> : < IoMdEye onClick={hideProduct} className='p-0.5 ring-1  ring-green-600 text-green-500 rounded-full cursor-pointer' />
           }
+          <FaTrash onClick={removeProduct} className='p-1 ring-1 ring-red-700 text-red-700 rounded-full cursor-pointer' />
         </div>
       </div>
     </div>

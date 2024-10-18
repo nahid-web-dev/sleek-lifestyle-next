@@ -57,7 +57,7 @@ function AdminProducts({ products }) {
       <div className=' grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-y-10 w-full'>
         {
           showProducts && showProducts.slice().reverse().map((singleProduct) => {
-            return <AdminCard singleProduct={singleProduct} key={singleProduct._id} />
+            return <AdminCard setShowProducts={setShowProducts} singleProduct={singleProduct} key={singleProduct._id} />
           })
         }
       </div>

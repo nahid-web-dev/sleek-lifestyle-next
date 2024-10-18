@@ -8,7 +8,9 @@ function SlideProducts({ slideProducts }) {
 
   const increaseTraffic = async () => {
     try {
-      fetch('/api/traffic/add')
+      const response = await fetch('/api/traffic/add')
+      const data = await response.json()
+      console.log(data)
     } catch (error) {
       console.log(error?.message)
     }

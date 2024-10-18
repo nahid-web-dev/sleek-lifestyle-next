@@ -17,6 +17,7 @@ export async function POST(req) {
     }
 
     const productId = await req.json();
+    console.log(productId)
     await Product.findByIdAndDelete(productId);
 
     return NextResponse.json({

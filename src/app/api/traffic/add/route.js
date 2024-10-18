@@ -24,6 +24,7 @@ export async function GET(req) {
     // Extract the IP address from headers or connection
     const ip = req.headers.get('x-forwarded-for') || req.connection.remoteAddress;
 
+    console.log(ip)
 
     const trafficInfo = {
       ip,

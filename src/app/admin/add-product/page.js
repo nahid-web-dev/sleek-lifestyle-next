@@ -21,7 +21,7 @@ function AddProductPage() {
 
 
   const handleSubmit = async (e) => {
-    // console.log(imageUrls)
+    console.log(imageUrls)
 
     const latestImageUrls = imageUrls.slice(imageUrls.length - 3, imageUrls.length)
 
@@ -42,6 +42,7 @@ function AddProductPage() {
         setImageUrls([])
         alert(res?.data?.message)
       }
+      console.log(res.data?.message)
     } catch (error) {
       alert(error?.message)
     }

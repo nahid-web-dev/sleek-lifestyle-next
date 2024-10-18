@@ -51,8 +51,7 @@ const productSchema = new mongoose.Schema({
     default: 0,
   },
   createdAt: {
-    type: Date,
-    default: Date.now, // Automatically set to the current date
+    type: String,
   },
 });
 

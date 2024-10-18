@@ -12,8 +12,7 @@ export const AddressSchema = new mongoose.Schema({
     type: String,
   },
   createdAt: {
-    type: Date,
-    default: Date.now,
+    type: String,
   },
 });
 

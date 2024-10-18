@@ -23,7 +23,7 @@ function Navbar() {
             <Image
               src={logo}
               alt="logo"
-              priiority
+              priority
             />
           </Link>
         </div>

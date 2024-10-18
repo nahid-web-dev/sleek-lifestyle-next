@@ -16,7 +16,11 @@ async function ClientOrdersPage() {
   const orders = JSON.parse(JSON.stringify(allOrders))
 
   if (!orders || orders.length === 0) {
-    return <div>No products available. Please check back later!</div>;
+    return (
+      <div className=" my-20 text-xl text-rose-600 text-center">
+        <h2>No Order Added!</h2>
+      </div>
+    )
   }
 
   return (

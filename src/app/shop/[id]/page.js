@@ -21,7 +21,11 @@ const SingleProduct = async ({ params }) => {
   const product = JSON.parse(JSON.stringify(receivedProduct))
 
   if (!product) {
-    return <div>No products available. Please check back later!</div>;
+    return (
+      <div className=" my-20 text-xl text-rose-600 text-center">
+        <h2>No Product Here!</h2>
+      </div>
+    )
   }
 
 
