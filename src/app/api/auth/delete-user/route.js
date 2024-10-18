@@ -6,7 +6,7 @@ export async function POST(req) {
     const { user_id } = await req.json();
 
     // Implement logic to delete user data from your database
-    const result = await User.deleteOne({ facebookId: user_id });
+    const result = await User.deleteOne({ _id: user_id });
 
     return NextResponse.json({
       success: true,
