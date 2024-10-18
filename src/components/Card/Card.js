@@ -1,8 +1,11 @@
 
+"use client"
+
 import Image from 'next/image';
 import { IoStarSharp } from "react-icons/io5";
 import { TbCurrencyTaka } from "react-icons/tb";
 import BuyNowButton from '../BuyNowButton/BuyNowButton';
+import { useRouter } from "next/navigation"
 
 
 export default function Card({ product, slideImage = false, }) {
@@ -11,6 +14,21 @@ export default function Card({ product, slideImage = false, }) {
   const name = product?.name
 
   const productName = name && name.split('').slice(0, 20)
+
+  const router = useRouter()
+  const handleBuy = (e) => {
+    e.stopPropagation()
+    fetch('/api/product/increase-click', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'Application/json'
+      },
+      body: JSON.stringify(product._id)
+    }).catch((error) => {
+      console.error("Unknown error!");
+    });
+    router.push(`/shop/${product._id}`)
+  }
 
   return (
 
@@ -55,7 +73,8 @@ export default function Card({ product, slideImage = false, }) {
             <p className=' sm:w-7 w-5 h-5 border sm:h-7 flex justify-center items-center border-blue-400 rounded-sm sm:rounded-md'>L</p>
             <p className=' sm:w-7 w-5 px-2 h-5 border sm:h-7 flex justify-center items-center border-blue-400 rounded-sm sm:rounded-md'>XL</p>
           </div>
-          <BuyNowButton productId={product._id} />
+
+          <button onClick={handleBuy} className=' sm:px-2 px-1 py-1 sm:hover:px-3 transition-all sm:py-1 text-xs sm:text-base font-medium text-white rounded-lg border border-stone-400 bg-black'>buy now</button>
         </div>
       </div>
     </div>
