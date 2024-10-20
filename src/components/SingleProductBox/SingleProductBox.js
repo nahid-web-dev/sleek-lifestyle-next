@@ -29,10 +29,8 @@ function SingleProductBox({ product }) {
   const [address, setAddress] = useState()
 
 
-  const whatsAppLinkText = encodeURIComponent(`Hello, please check this product: https://sleek-lifestyle.com/shop/${product._id}`);
-  const whatsAppLink = `https://wa.me/8801317488951?text=${whatsAppLinkText}`
-
-  const { data: session, status } = useSession()
+  const whatsAppLinkText = encodeURIComponent(`Hello, Please check this product: https://sleek-lifestyle.com/shop/${product._id}`);
+  const whatsAppLink = `https://wa.me/8801845575463?text=${whatsAppLinkText}`
 
   const router = useRouter()
 
@@ -133,10 +131,11 @@ function SingleProductBox({ product }) {
 
 
           <div className='flex justify-center'>
-            <div className=' text-2xl flex flex-col gap-2'>
+            <div className=' text-lg md:text-2xl flex flex-col gap-1 md:gap-2'>
               <pre>Type      : {product.type}</pre>
               {product.discount > 0 && <pre className=' flex'>Old Price : <p>{product.oldPrice} tk</p></pre>}
               <pre className=' flex '>Discount  : <p>{product.discount} %</p></pre>
+              <pre className=' border-t-2 border-blue-300 flex '>Price     : <p>{product.currentPrice} tk</p></pre>
               <pre className=' flex '>Quantity  : <div className=' text-lg md:text-xl flex items-center border border-blue-400 rounded-md'>
                 <TiMinus className=' border-blue-400 w-10 h-7 cursor-pointer ' onClick={(e) => {
                   e.stopPropagation()
@@ -155,22 +154,25 @@ function SingleProductBox({ product }) {
                 } />
               </div>
               </pre>
-              <div className=' sm:text-xl font-medium flex justify-center gap-5 my-4 cursor-default'>
-                <h2 onClick={() => { setSize('M') }} className={`${size === 'M' && 'bg-blue-500 text-white border-none'} border-2 border-blue-300 rounded-md px-3 py-1 transition-all`}>M</h2>
-                <h2 onClick={() => { setSize('L') }} className={`${size === 'L' && 'bg-blue-500 text-white border-none'} border-2 border-blue-300 rounded-md px-4 py-1 transition-all`}>L</h2>
-                <h2 onClick={() => { setSize('XL') }} className={`${size === 'XL' && 'bg-blue-500 text-white border-none'} border-2 border-blue-300 rounded-md px-2 py-1 transition-all`}>XL</h2>
-              </div>
-              <pre className=' border-t-2 border-blue-300 flex '>Price     : <p>{product.currentPrice} tk</p></pre>
+
               <div className='flex flex-col items-center gap-4 sm:gap-5 my-3 sm:my-6 text-center text-white'>
                 {/* <button className='w-[80%] bg-indigo-600 py-1 transition-all sm:hover:w-[90%] rounded-lg' onClick={addToCart}>Add to Cart</button> */}
-                <button className={` text-stone-700 text-lg border-2 border-stone-400 py-1 transition-all sm:hover:w-[80%] rounded-lg  ${copied ? 'w-[50%] !text-green-700 !border-green-500 flex justify-center items-center' : 'w-[65%]'}`} onClick={copyProductLink}> {copied ? 'Copied' : 'Copy Product Link'} {copied && <MdCheck />} </button>
+                {/* <button className={` text-stone-700 text-lg border-2 border-stone-400 py-1 transition-all sm:hover:w-[80%] rounded-lg  ${copied ? 'w-[50%] !text-green-700 !border-green-500 flex justify-center items-center' : 'w-[65%]'}`} onClick={copyProductLink}> {copied ? 'Copied' : 'Copy Product Link'} {copied && <MdCheck />} </button> */}
                 <Link href={whatsAppLink} target='_blank' className='w-[80%] text-lg bg-blue-500 py-2 transition-all sm:hover:w-[90%] rounded-lg'>Order Via What&apos;s app</Link>
 
                 <h2 className=' text-3xl text-center text-rose-700'>Or,</h2>
 
                 <div className=' flex flex-col text-start text-base justify-center gap-3'>
-                  <h2 className="text-lg sm:text-2xl text-gray-600 text-center">Add Order Information</h2>
-                  <form onSubmit={orderNow} className='bg-slate-200 border border-blue-400 py-4 sm:px-10 px-3 rounded-xl add-form w-[90vw] sm:w-[450px] flex flex-col items-center gap-4'>
+                  <h2 className="text-lg sm:text-2xl text-gray-700 text-center">Add Order Information</h2>
+                  <form onSubmit={orderNow} className='bg-slate-50 border border-blue-400 py-4 sm:px-10 px-3 rounded-xl add-form w-[90vw] sm:w-[450px] flex flex-col items-center gap-4'>
+                    <div className='w-full flex !flex-col '>
+                      <h2 className='text-xl text-gray-700'>Size</h2>
+                      <div className=' sm:text-xl font-medium flex !flex-row justify-center gap-5 cursor-default'>
+                        <h2 onClick={() => { setSize('M') }} className={`${size === 'M' && 'bg-blue-500 text-white border-none'} border-2 border-blue-300 rounded-md px-3 py-1 transition-all bg-white text-stone-500`}>M</h2>
+                        <h2 onClick={() => { setSize('L') }} className={`${size === 'L' && 'bg-blue-500 text-white border-none'} border-2 border-blue-300 rounded-md px-4 py-1 transition-all bg-white text-stone-500`}>L</h2>
+                        <h2 onClick={() => { setSize('XL') }} className={`${size === 'XL' && 'bg-blue-500 text-white border-none'} border-2 border-blue-300 rounded-md px-2 py-1 transition-all bg-white text-stone-500`}>XL</h2>
+                      </div>
+                    </div>
                     <div className='w-full'>
                       <input ref={name} type="text" id='name' placeholder='Reciever name' required />
                       <label htmlFor="name">Name</label>
@@ -187,7 +189,7 @@ function SingleProductBox({ product }) {
                       <input ref={upazila} type="text" id='upazila' placeholder='Upazila name' required />
                       <label htmlFor="upazila">Upazila</label>
                     </div>
-                    <button type='submit' className=' max-w-[60%] sm:max-w-[80%] bg-sky-500 py-1 transition-all sm:hover:max-w-[90%] sm:focus:max-w-[100%] rounded-lg' >Order Now</button>
+                    <button type='submit' className=' max-w-[60%] sm:max-w-[80%] !bg-blue-500 py-1 transition-all sm:hover:max-w-[90%] sm:focus:max-w-[100%] rounded-lg' >Order Now</button>
                   </form>
                 </div>
               </div>

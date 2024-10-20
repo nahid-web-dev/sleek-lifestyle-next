@@ -4,13 +4,17 @@ import { FaFacebookMessenger, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa'
 import { FaSquareFacebook } from 'react-icons/fa6'
 
 const Footer = () => {
+
+  const whatsAppText = encodeURIComponent("Hi, I visited sleek lifestyle's website and saw what's app link.")
+  const encodedText = `https://wa.me/8801845575463?text=${whatsAppText}`
+
   return (
     <div className='my-4 relative border-t-2 border-blue-200 py-3'>
       <div>
         <ul className=' text-4xl text-blue-500 flex justify-center gap-6'>
-          <li><Link href='#'><FaSquareFacebook /></Link></li>
-          <li><Link href='#'><FaFacebookMessenger className='text-indigo-700' /></Link></li>
-          <li><Link href='#'><FaWhatsapp className=' text-green-500' /></Link></li>
+          <li><Link href='https://www.facebook.com/sleeklifestylebrand?mibextid=ZbWKwL' target='_blank'><FaSquareFacebook /></Link></li>
+          <li><Link href='https://m.me/sleeklifestylebrand' target='_blank'><FaFacebookMessenger className='text-indigo-700' /></Link></li>
+          <li><Link href={encodedText} target='_blank'><FaWhatsapp className=' text-green-500' /></Link></li>
         </ul>
         <h2 className=' justify-center mt-4 flex items-center text-lg sm:text-2xl gap-2 text-stone-500 font-medium'>
           <FaPhoneAlt className=' text-green-500' /> 01607-402797        </h2>
