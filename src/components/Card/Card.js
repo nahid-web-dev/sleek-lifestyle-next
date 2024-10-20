@@ -33,7 +33,7 @@ export default function Card({ product, slideImage = false, }) {
 
     <div className={`rounded-lg overflow-hidden w-[150px] sm:w-[240px] bg-white flex flex-col gap-2 ${slideImage && 'mx-auto'} `}>
 
-      <div className='relative p-4  w-full h-[180px] sm:h-[300px] '>
+      <div className='relative p-4  w-full h-[180px] sm:h-[300px] cursor-pointer' onClick={handleBuy}>
         <Image
           className='object-center object-cover rounded-lg sm:hover:scale-125 transition-all'
           src={cloudinaryURL}
@@ -66,7 +66,7 @@ export default function Card({ product, slideImage = false, }) {
           }
 
         </div>
-        <div className=' px-2 sm:px-4 h-[100%] flex justify-end items-center gap-2 sm:gap-5'>
+        <div className=' px-2 sm:px-4 h-[100%] flex justify-end items-center gap-2 sm:gap-5 w-full'>
           <div className=' flex sm:gap-2 gap-1 sm:text-lg text-xs font-medium text-stone-800 cursor-default'>
             <p className=' sm:w-7 w-5 h-5 border sm:h-7 flex justify-center items-center border-blue-400 rounded-sm sm:rounded-md'>M</p>
             <p className=' sm:w-7 w-5 h-5 border sm:h-7 flex justify-center items-center border-blue-400 rounded-sm sm:rounded-md'>L</p>

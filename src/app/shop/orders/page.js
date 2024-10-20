@@ -11,6 +11,10 @@ async function ClientOrdersPage() {
 
   const session = await getServerSession(authOptions);
 
+  if (!session?.user.email) {
+    throw redirect('/auth/signin')
+  }
+
   const allOrders = await Order.find({ "address.email": session?.user.email }).lean()
 
   const orders = JSON.parse(JSON.stringify(allOrders))

@@ -24,7 +24,7 @@ export default async function Home() {
   const serializedProducts = JSON.parse(JSON.stringify(allProducts))
 
   const products = serializedProducts.filter((element) => {
-    return element.showHome && !element.hide && !element.showSlide
+    return element.showHome && !element.hide
   });
   const slideProducts = serializedProducts.filter((element) => {
     return element.showSlide && !element.hide

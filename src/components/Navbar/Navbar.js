@@ -9,10 +9,14 @@ import logo from '@/public/images/logo.png'
 
 import './Navbar.css';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 
 
 
 function Navbar() {
+
+  const { data: session, status } = useSession()
+
   const pathname = usePathname(); // Get the current pathname
 
   return (
@@ -48,9 +52,16 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href='/auth/user-info'>
-              <FaUserAlt className='text-indigo-400' />
-            </Link>
+            {
+              session?.user.role === 'admin' ?
+                <Link href='/admin' target='_blank'>
+                  <FaUserAlt className='text-indigo-400' />
+                </Link>
+                :
+                <Link href='/auth/user-info'>
+                  <FaUserAlt className='text-indigo-400' />
+                </Link>
+            }
           </li>
         </ul>
       </div>

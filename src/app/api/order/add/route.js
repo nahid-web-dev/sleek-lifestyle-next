@@ -13,31 +13,15 @@ export async function POST(req) {
 
     await connectToDB()
 
-    const session = await getServerSession(authOptions)
+    const session = getServerSession(authOptions)
 
-    console.log(session?.user)
+    const { productsInfo, addressInfo } = await req.json();
 
-    if (!session?.user?.email) {
-      return NextResponse.json({
-        success: false,
-        message: 'Signin first!'
-      }, { status: 401 })
+    if (session?.user?.email) {
+      addressInfo.email = session.user.email
     }
 
-    const { email } = session.user
-
-    const address = await Address.findOne({ email }).lean().select('-_id')
-
-    if (!address) {
-      return NextResponse.json({
-        success: false,
-        message: 'Address not found'
-      }, { status: 404 })
-    }
-
-    const products = await req.json();
-
-    console.log(products)
+    // console.log(productsInfo)
 
     // Get the current date/time in a specific timezone
     const nowInDhaka = DateTime.now().setZone('Asia/Dhaka');
@@ -46,8 +30,8 @@ export async function POST(req) {
     const dhakaDate = nowInDhaka.toFormat('dd-MM-yyyy HH:mm:ss');
 
     const orderInfo = {
-      address,
-      products,
+      address: addressInfo,
+      product: productsInfo,
       createdAt: dhakaDate
     }
 

@@ -4,10 +4,11 @@ import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { FaPlus } from 'react-icons/fa6'
 import { MdCheck } from 'react-icons/md'
 import { TiMinus } from "react-icons/ti";
+import '@/app/auth/user-info/user-info.css'
 
 function SingleProductBox({ product }) {
 
@@ -17,27 +18,40 @@ function SingleProductBox({ product }) {
   const [quantity, setQuantity] = useState(1)
   const [copied, setCopied] = useState(false)
 
+
+  ////////////
+
+  const name = useRef()
+  const phone = useRef()
+  const villageName = useRef()
+  const upazila = useRef()
+
+  const [address, setAddress] = useState()
+
+
+  const whatsAppLinkText = encodeURIComponent(`Hello, please check this product: https://sleek-lifestyle.com/shop/${product._id}`);
+  const whatsAppLink = `https://wa.me/8801317488951?text=${whatsAppLinkText}`
+
   const { data: session, status } = useSession()
 
   const router = useRouter()
 
-  const addToCart = async () => {
-    return
-  }
 
-  const orderNow = async () => {
-
+  const orderNow = async (e) => {
+    e.preventDefault()
     try {
-      if (!session?.user?.email) {
-        window.open(`https://m.me/sleeklifestylebrand`, "_blank");
-        return
-      }
 
       if (!size) {
         return alert('Please select a size.')
       }
+      const addressInfo = {
+        name: name.current.value,
+        phone: phone.current.value,
+        villageName: villageName.current.value,
+        upazila: upazila.current.value,
+      }
 
-      const orderInfo = [
+      const productsInfo = [
         {
           type: product.type,
           productId: product._id,
@@ -52,7 +66,7 @@ function SingleProductBox({ product }) {
         headers: {
           'Content-Type': 'Application/json'
         },
-        body: JSON.stringify(orderInfo)
+        body: JSON.stringify({ productsInfo, addressInfo })
       })
       const status = response.status
       if (status === 404) {
@@ -77,11 +91,12 @@ function SingleProductBox({ product }) {
     }
   }
 
+
   return (
     <div>
       {
         product &&
-        <div className='flex flex-col md:flex-row md:justify-around gap-6 sm:gap-10 md:items-center sm:px-6 px-2'>
+        <div className='flex flex-col md:flex-row md:justify-around gap-6 sm:gap-10 sm:px-6 px-2'>
 
           <div className='flex gap-6 flex-col items-center'>
             <div className='relative h-[334px] w-full py-5'>
@@ -149,8 +164,32 @@ function SingleProductBox({ product }) {
               <div className='flex flex-col items-center gap-4 sm:gap-5 my-3 sm:my-6 text-center text-white'>
                 {/* <button className='w-[80%] bg-indigo-600 py-1 transition-all sm:hover:w-[90%] rounded-lg' onClick={addToCart}>Add to Cart</button> */}
                 <button className={` text-stone-700 text-lg border-2 border-stone-400 py-1 transition-all sm:hover:w-[80%] rounded-lg  ${copied ? 'w-[50%] !text-green-700 !border-green-500 flex justify-center items-center' : 'w-[65%]'}`} onClick={copyProductLink}> {copied ? 'Copied' : 'Copy Product Link'} {copied && <MdCheck />} </button>
-                <button className='w-[80%] bg-sky-500 py-1 transition-all sm:hover:w-[90%] rounded-lg' onClick={orderNow}>Order Now</button>
-                {/* <Link href='#' className='w-[80%] bg-sky-500 py-1 transition-all sm:hover:w-[90%] rounded-lg'>Order Now</Link> */}
+                <Link href={whatsAppLink} target='_blank' className='w-[80%] text-lg bg-blue-500 py-2 transition-all sm:hover:w-[90%] rounded-lg'>Order Via What&apos;s app</Link>
+
+                <h2 className=' text-3xl text-center text-rose-700'>Or,</h2>
+
+                <div className=' flex flex-col text-start text-base justify-center gap-3'>
+                  <h2 className="text-lg sm:text-2xl text-gray-600 text-center">Add Order Information</h2>
+                  <form onSubmit={orderNow} className='bg-slate-200 border border-blue-400 py-4 sm:px-10 px-3 rounded-xl add-form w-[90vw] sm:w-[450px] flex flex-col items-center gap-4'>
+                    <div className='w-full'>
+                      <input ref={name} type="text" id='name' placeholder='Reciever name' required />
+                      <label htmlFor="name">Name</label>
+                    </div>
+                    <div className='w-full'>
+                      <input ref={phone} type="number" id='number' placeholder='Phone number' required />
+                      <label htmlFor="number">Number</label>
+                    </div>
+                    <div className='w-full'>
+                      <input ref={villageName} type="text" id='village' placeholder='Street or Village' required />
+                      <label htmlFor="village">Address</label>
+                    </div>
+                    <div className='w-full'>
+                      <input ref={upazila} type="text" id='upazila' placeholder='Upazila name' required />
+                      <label htmlFor="upazila">Upazila</label>
+                    </div>
+                    <button type='submit' className=' max-w-[60%] sm:max-w-[80%] bg-sky-500 py-1 transition-all sm:hover:max-w-[90%] sm:focus:max-w-[100%] rounded-lg' >Order Now</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
